@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-void	health_check(t_all *all, int i)
+int	health_check(t_all *all, int i)
 {
 	t_philosopher	*philosophers;
 
@@ -25,8 +25,9 @@ void	health_check(t_all *all, int i)
 		ft_putstr_fd(" ", 1);
 		ft_putnbr_fd(philosophers[i].index, 1);
 		ft_putendl_fd(" died", 1);
-		exit(0);
+		return (0);
 	}
+	return (1);
 }
 
 void	monitor(t_all *all)
@@ -44,13 +45,14 @@ void	monitor(t_all *all)
 		{
 			if (!(philosophers[i].done))
 				done = 0;
-			health_check(all, i);
+			if (!health_check(all, i))
+				return ;
 			i++;
 		}
 		if (done)
 		{
 			pthread_mutex_lock(&(all->shared_data.mutex_print));
-			exit(0);
+			return ;
 		}
 	}
 }
@@ -60,5 +62,5 @@ void	start_monitor(t_all *all)
 	pthread_t	monitor_t;
 
 	pthread_create(&monitor_t, NULL, (void *(*)(void *))monitor, all);
-	pthread_detach(monitor_t);
+	pthread_join(monitor_t, NULL);
 }

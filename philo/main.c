@@ -74,6 +74,7 @@ int	main(int ac, char **av)
 		init_mutex(&(all.shared_data.mutex_print), 1);
 		init_philosophers(&all);
 		start_threads(&all);
+		start_monitor(&all);
 		return (0);
 	}
 	else

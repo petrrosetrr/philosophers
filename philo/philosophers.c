@@ -84,11 +84,4 @@ void	start_threads(t_all *all)
 			(void *(*)(void *))philosopher, &(all->philosophers[i]));
 		i += 2;
 	}
-	start_monitor(all);
-	i = 0;
-	while (i < all->nbr_of_philosophers)
-	{
-		pthread_join(philosophers_t[i], NULL);
-		i++;
-	}
 }
