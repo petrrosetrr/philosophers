@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jalease <jalease@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/01 22:35:55 by jalease           #+#    #+#             */
-/*   Updated: 2020/11/03 00:07:44 by jalease          ###   ########.fr       */
+/*   Created: 2020/11/03 17:20:05 by jalease           #+#    #+#             */
+/*   Updated: 2020/11/03 17:25:05 by jalease          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "../philo.h"
+#include <unistd.h>
 
-void	*ft_calloc(size_t count, size_t size)
+void	ft_putendl_fd(char *s, int fd)
 {
-	unsigned char	*ptr;
-	size_t			i;
-
-	i = 0;
-	ptr = malloc(size * count);
-	if (ptr != NULL)
+	if (s != NULL)
 	{
-		while (i < size * count)
-			ptr[i++] = '\0';
+		write(fd, s, ft_strlen(s));
+		write(fd, "\n", 1);
 	}
-	return (ptr);
 }
