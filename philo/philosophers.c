@@ -76,7 +76,7 @@ void	start_threads(t_all *all)
 			(void *(*)(void *))philosopher, &(all->philosophers[i]));
 		i += 2;
 	}
-	my_usleep(5);
+	my_usleep(10);
 	i = 1;
 	while (i < all->nbr_of_philosophers)
 	{
